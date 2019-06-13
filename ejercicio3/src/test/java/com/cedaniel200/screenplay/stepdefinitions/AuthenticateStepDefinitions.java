@@ -1,8 +1,9 @@
 package com.cedaniel200.screenplay.stepdefinitions;
 
+import com.cedaniel200.screenplay.questions.TheHomePage;
+import com.cedaniel200.screenplay.tasks.Authenticate;
 import com.cedaniel200.screenplay.tasks.Register;
 import com.cedaniel200.screenplay.userinterface.HomePage;
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,7 +13,9 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
 import static com.cedaniel200.screenplay.model.UserBuilder.userDefault;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class AuthenticateStepDefinitions {
 
@@ -34,13 +37,13 @@ public class AuthenticateStepDefinitions {
 
     @When("^Cesar is authenticated$")
     public void iAuthenticate() {
-        // TODO Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        theActorInTheSpotlight().attemptsTo(
+                Authenticate.the(userDefault())
+        );
     }
 
     @Then("^Cesar should see the home page$")
     public void iShouldSeeTheHomePage() {
-        // TODO Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        theActorInTheSpotlight().should(seeThat(TheHomePage.isVisible()));
     }
 }
